@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mentors',
     'booking',
     'messaging',
+    'users',
 ]
 
 MIDDLEWARE = [
