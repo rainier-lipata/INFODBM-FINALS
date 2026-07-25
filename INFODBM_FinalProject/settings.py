@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'INFODBM_MentorMatchSystem',
-        'HOST': r'LAPTOP-8DAICJ5U\MSSQLSERVER2025',
+        'HOST': r'LAPTOP-OCUD9IQR\MSSQLSERVER2026',
         'OPTIONS': {
             'driver': 'ODBC Driver 18 for SQL Server',
             'trusted_connection': 'yes',
