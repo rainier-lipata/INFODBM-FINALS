@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .services import search_mentors
+from .services import search_mentors, get_student_sessions
 
 
 class SearchMentorAPIView(APIView):
@@ -23,3 +23,12 @@ class SearchMentorAPIView(APIView):
         mentors = search_mentors(topic)
 
         return Response(mentors)
+
+
+class StudentSessionAPIView(APIView):
+
+    def get(self, request, student_id):
+
+        data = get_student_sessions(student_id)
+
+        return Response(data)
