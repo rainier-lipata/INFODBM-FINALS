@@ -12,3 +12,13 @@ class BookingRequestSerializer(serializers.Serializer):
     TopicID = serializers.IntegerField()
 
     Message = serializers.CharField(max_length=500)
+
+class AvailabilitySerializer(serializers.Serializer):
+
+    MentorID = serializers.IntegerField()
+
+    AvailableDate = serializers.DateField()
+
+    StartTime = serializers.TimeField()
+
+    EndTime = serializers.TimeField()

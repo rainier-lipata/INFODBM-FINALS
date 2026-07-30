@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Mentor Dashboard</title>
 
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -24,28 +25,117 @@
 
 <div class="container">
 
+    <!-- Welcome -->
     <div class="welcome-card">
+
+        <h2 id="welcome"></h2>
+
+        <p id="role"></p>
+
+    </div>
+
+    <!-- Dashboard Statistics -->
+    <div class="dashboard-grid">
+
+        <div class="card">
+
+            <h3>Total Sessions</h3>
+
+            <h2 id="total-sessions">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Scheduled Sessions</h3>
+
+            <h2 id="scheduled-sessions">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Completed Sessions</h3>
+
+            <h2 id="completed-sessions">0</h2>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Pending Requests -->
+    <div class="card">
 
         <h2>Pending Booking Requests</h2>
 
         <p>Approve student booking requests.</p>
 
+        <div id="pending-requests">
+
+        </div>
+
     </div>
 
-    <div id="pending-requests">
+    <br>
+
+    <!-- Upcoming Sessions -->
+    <div class="card">
+
+        <h2>Upcoming Sessions</h2>
+
+        <div id="mentor-sessions">
+
+        </div>
 
     </div>
 
-    <div class="welcome-card">
+    <br>
 
-    <h2>Upcoming Sessions</h2>
+    <!-- Add Availability -->
+    <div class="card">
 
-</div>
+        <h2>Add Availability</h2>
 
+        <input
+            type="date"
+            id="available-date">
 
-<div id="mentor-sessions">
+        <br><br>
 
-</div>
+        <input
+            type="time"
+            id="start-time">
+
+        <br><br>
+
+        <input
+            type="time"
+            id="end-time">
+
+        <br><br>
+
+        <button onclick="addAvailability()">
+
+            Add Availability
+
+        </button>
+
+    </div>
+
+    <br>
+
+    <!-- My Availability -->
+    <div class="card">
+
+        <h2>My Availability</h2>
+
+        <div id="mentor-availability">
+
+        </div>
+
+    </div>
 
 </div>
 

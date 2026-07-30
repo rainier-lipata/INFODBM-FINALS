@@ -86,3 +86,55 @@ async function approveBooking(requestID) {
 
     return await response.json();
 }
+
+async function getStudentSessions(studentID){
+
+    const response = await fetch(
+        `${API_URL}/booking/sessions/student/${studentID}/`
+    );
+
+    return await response.json();
+
+}
+
+async function addAvailabilityRequest(data){
+
+    const response = await fetch(
+        `${API_URL}/booking/availability/add/`,
+        {
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify(data)
+        }
+    );
+
+    return await response.json();
+
+}
+
+async function deleteAvailabilityRequest(availabilityID){
+
+    const response = await fetch(
+        `${API_URL}/booking/availability/delete/${availabilityID}/`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    return await response.json();
+
+}
+
+async function getAvailability(mentorID){
+
+    const response = await fetch(
+        `${API_URL}/mentors/availability/${mentorID}/`
+    );
+
+    return await response.json();
+
+}

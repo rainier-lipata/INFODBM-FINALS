@@ -5,8 +5,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from .serializers import BookingRequestSerializer
-from .services import create_booking, get_pending_requests, approve_booking, get_mentor_sessions, complete_session, get_student_sessions
+from .serializers import BookingRequestSerializer, AvailabilitySerializer
+from .services import (create_booking, get_pending_requests, approve_booking, get_mentor_sessions,
+                       complete_session, get_student_sessions, add_availability, delete_availability)
 from .models import BookingRequest
 
 
@@ -84,3 +85,33 @@ class StudentSessionsAPIView(APIView):
         data = get_student_sessions(student_id)
 
         return Response(data)
+
+class AddAvailabilityAPIView(APIView):
+
+    def post(self, request):
+
+        print(request.data)
+
+        serializer = AvailabilitySerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            result = add_availability(
+                serializer.validated_data
+            )
+
+            return Response(result)
+
+        print(serializer.errors)
+
+        return Response(
+            serializer.errors,
+            status=400
+        )
+class DeleteAvailabilityAPIView(APIView):
+
+    def delete(self, request, availability_id):
+
+        result = delete_availability(availability_id)
+
+        return Response(result)
