@@ -51,7 +51,8 @@ def get_mentor_availability(mentor_id):
                 EndTime,
                 IsBooked
             FROM Availability
-            WHERE MentorID=%s
+            WHERE MentorID = %s
+              AND IsBooked = 0
             ORDER BY AvailableDate, StartTime
         """, [mentor_id])
 

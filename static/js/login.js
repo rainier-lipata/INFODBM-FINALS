@@ -4,78 +4,40 @@ async function login() {
 
     const password = document.getElementById("password").value;
 
-    const response = await fetch(
+    if (email === "" || password === "") {
 
-        `${BASE_URL}/accounts/login/`,
+        alert("Please enter your email and password.");
 
-        {
+        return;
+    }
 
-            method:"POST",
+    try {
 
-            headers:{
+        const result = await loginRequest(email, password);
+        console.log(result);
 
-                "Content-Type":"application/json"
+        sessionStorage.setItem(
+            "user",
+            JSON.stringify(result.user)
+        );
 
-            },
+        if (result.user.Role === "Student") {
 
-            body:JSON.stringify({
+            window.location.href = "/student-dashboard/";
 
-                Email:email,
+        } else if (result.user.Role === "Mentor") {
 
-                PasswordHash:password
-
-            })
+            window.location.href = "/mentor-dashboard/";
 
         }
 
-    );
-
-    const data = await response.json();
-
-    if(response.ok){
-
-        sessionStorage.setItem(
-
-            "UserID",
-
-            data.user.UserID
-
-        );
-
-        sessionStorage.setItem(
-
-            "Role",
-
-            data.user.Role
-
-        );
-
-        sessionStorage.setItem(
-
-            "FirstName",
-
-            data.user.FirstName
-
-        );
-
-        if(data.user.Role==="Student"){
-
-            window.location.href="student-dashboard.html";
-
-        }
-
-        else{
-
-            window.location.href="mentor-dashboard.html";
-
-        }
 
     }
 
-    else{
+    catch(error) {
 
-        alert(data.message);
+        console.error(error);
 
+        alert("Login failed.");
     }
-
 }

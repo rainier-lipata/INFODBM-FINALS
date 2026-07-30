@@ -1,10 +1,57 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
+
 <body>
 
+<header>
+
+    <h1>MentorMatch</h1>
+
+    <button onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+<div class="container">
+
+    <div class="welcome-card">
+
+        <h2>Pending Booking Requests</h2>
+
+        <p>Approve student booking requests.</p>
+
+    </div>
+
+    <div id="pending-requests">
+
+    </div>
+
+    <div class="welcome-card">
+
+    <h2>Upcoming Sessions</h2>
+
+</div>
+
+
+<div id="mentor-sessions">
+
+</div>
+
+</div>
+
+<script src="{% static 'js/api.js' %}"></script>
+<script src="{% static 'js/mentor.js' %}"></script>
+
 </body>
+
 </html>

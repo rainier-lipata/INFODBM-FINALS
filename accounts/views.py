@@ -78,10 +78,12 @@ class LoginAPIView(APIView):
                         {
                             "message": "Login successful.",
                             "user": {
-                                "UserID": user[0],
-                                "FirstName": user[1],
-                                "LastName": user[2],
-                                "Role": user[3]
+                                    "UserID": user[0],
+                                    "StudentID": user[1],
+                                    "MentorID": user[2],
+                                    "FirstName": user[3],
+                                    "LastName": user[4],
+                                    "Role": user[5]
                             }
                         }
                     )

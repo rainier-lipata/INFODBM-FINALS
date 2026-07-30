@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import login_page
+from .views import (login_page, student_dashboard, mentor_dashboard,)
 
 urlpatterns = [
 
@@ -8,6 +8,18 @@ urlpatterns = [
         "login/",
         login_page,
         name="login"
+    ),
+
+    path(
+        "student-dashboard/",
+        student_dashboard,
+        name="student-dashboard"
+    ),
+
+    path(
+        "mentor-dashboard/",
+        mentor_dashboard,
+        name="mentor-dashboard"
     ),
 
 ]

@@ -6,4 +6,16 @@ def login_page(request):
         request,
         "MentorMatchFrontend/login.html"
     )
-# Create your views here.
+
+def student_dashboard(request):
+    return render(
+        request,
+        "MentorMatchFrontend/student-dashboard.html"
+    )
+
+def mentor_dashboard(request):
+    return render(
+        request,
+        "MentorMatchFrontend/mentor-dashboard.html"
+    )
+
