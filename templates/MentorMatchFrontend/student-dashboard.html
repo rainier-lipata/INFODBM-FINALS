@@ -34,42 +34,32 @@
 
     </div>
 
-    <div class="dashboard-grid">
+    <!-- Search Mentors -->
+    <div class="card">
 
-        <!-- Search Mentors -->
-        <div class="card">
+        <h3>Search Mentors</h3>
 
-            <h3>Search Mentors</h3>
+        <input
+            type="text"
+            id="topic"
+            placeholder="Enter a topic">
 
-            <input
-                type="text"
-                id="topic"
-                placeholder="Enter a topic">
+        <button onclick="searchMentors()">
+            Search
+        </button>
 
-            <button onclick="searchMentors()">
-                Search
-            </button>
-
-            <br><br>
-
-            <div id="mentor-results">
-
-            </div>
+        <div id="mentor-results">
 
         </div>
 
-        <!-- My Sessions -->
-        <div class="card">
+    </div>
 
-            <h3>My Sessions</h3>
+    <!-- My Sessions -->
+    <div class="card">
 
-            <p>
-                View all your pending, scheduled, and completed mentoring sessions.
-            </p>
+        <h3>My Sessions</h3>
 
-            <div id="student-sessions">
-
-            </div>
+        <div id="student-sessions">
 
         </div>
 

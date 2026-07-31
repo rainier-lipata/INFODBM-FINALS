@@ -86,3 +86,13 @@ async function approveBooking(requestID) {
 
     return await response.json();
 }
+
+async function getStudentSessions(studentID){
+
+    const response = await fetch(
+        `${API_URL}/booking/sessions/student/${studentID}/`
+    );
+
+    return await response.json();
+
+}

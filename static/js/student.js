@@ -167,11 +167,7 @@ async function submitBooking(MentorID, TopicID) {
 
 async function loadStudentSessions() {
 
-    const response = await fetch(
-        `/api/booking/sessions/student/${user.StudentID}/`
-    );
-
-    const sessions = await response.json();
+    const sessions = await getStudentSessions(user.StudentID);
 
     console.log(sessions);
 
@@ -183,7 +179,7 @@ async function loadStudentSessions() {
     if (sessions.length === 0) {
 
         container.innerHTML =
-            "<p>No sessions yet.</p>";
+            "<p>No sessions found.</p>";
 
         return;
     }
@@ -192,30 +188,30 @@ async function loadStudentSessions() {
 
         container.innerHTML += `
 
-        <div class="session-card">
+            <div class="session-card">
 
-            <h4>
-                Mentor: ${session.MentorName}
-            </h4>
+                <h4>
+                    Mentor: ${session.MentorName}
+                </h4>
 
-            <p>
-                Date:
-                ${session.SessionDate}
-            </p>
+                <p>
+                    Date:
+                    ${session.SessionDate}
+                </p>
 
-            <p>
-                Time:
-                ${session.StartTime}
-                -
-                ${session.EndTime}
-            </p>
+                <p>
+                    Time:
+                    ${session.StartTime}
+                    -
+                    ${session.EndTime}
+                </p>
 
-            <p>
-                Status:
-                ${session.Status}
-            </p>
+                <p>
+                    Status:
+                    ${session.Status}
+                </p>
 
-        </div>
+            </div>
 
         `;
 

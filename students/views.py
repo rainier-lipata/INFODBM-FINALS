@@ -25,7 +25,7 @@ class SearchMentorAPIView(APIView):
         return Response(mentors)
 
 
-class StudentSessionAPIView(APIView):
+class StudentSessionsAPIView(APIView):
 
     def get(self, request, student_id):
 

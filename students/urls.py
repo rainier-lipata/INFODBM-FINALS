@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
     SearchMentorAPIView,
-    StudentSessionAPIView
+    StudentSessionsAPIView
 )
 
 urlpatterns = [
@@ -13,11 +13,9 @@ urlpatterns = [
         name="search-mentors"
     ),
 
-
-
     path(
-        "sessions/<int:student_id>/",
-        StudentSessionAPIView.as_view(),
+        "sessions/student/<int:student_id>/",
+        StudentSessionsAPIView.as_view(),
         name="student-sessions"
     ),
 
