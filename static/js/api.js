@@ -95,8 +95,6 @@ async function getStudentSessions(studentID){
 
     return await response.json();
 
-
-
 }
 
 async function addAvailabilityRequest(data){
@@ -140,3 +138,15 @@ async function getAvailability(mentorID){
     return await response.json();
 
 }
+
+async function getDashboard(mentorID){
+
+    const response = await fetch(
+        `${API_URL}/mentors/dashboard/${mentorID}/`
+    );
+
+    return await response.json();
+}
+
+console.log("api.js loaded");
+console.log(typeof getDashboard);

@@ -178,6 +178,17 @@ async function loadStudentSessions() {
 
     container.innerHTML = "";
 
+     if (sessions.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
+
+        return;
+    }
+
     if (sessions.length === 0) {
 
         container.innerHTML =

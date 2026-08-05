@@ -24,6 +24,17 @@ async function loadPendingRequests() {
 
     container.innerHTML = "";
 
+    if (requests.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
+
+        return;
+    }
+
     requests.forEach(request => {
 
         container.innerHTML += `
@@ -104,6 +115,17 @@ async function loadMentorSessions(){
 
 
     container.innerHTML = "";
+
+     if (sessions.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
+
+        return;
+    }
 
 
     sessions.forEach(session => {
@@ -236,13 +258,15 @@ async function loadAvailability() {
 
     container.innerHTML = "";
 
-    if (availability.length === 0) {
+     if (availability.length === 0) {
 
-        container.innerHTML =
-            "<p>No availability added yet.</p>";
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
 
         return;
-
     }
 
     availability.forEach(slot => {
@@ -296,6 +320,25 @@ function logout() {
 
 }
 
+
+async function loadDashboard(){
+
+    console.log("loadDashboard called");
+
+    const dashboard = await getDashboard(user.MentorID);
+
+    console.log(dashboard);
+
+    document.getElementById("total-sessions").textContent =
+        dashboard.TotalSessions;
+
+    document.getElementById("scheduled-sessions").textContent =
+        dashboard.ScheduledSessions;
+
+    document.getElementById("completed-sessions").textContent =
+        dashboard.CompletedSessions;
+}
+
 window.onload = function(){
 
     loadPendingRequests();
@@ -303,5 +346,7 @@ window.onload = function(){
     loadMentorSessions();
 
     loadAvailability();
+
+    loadDashboard()
 
 };
