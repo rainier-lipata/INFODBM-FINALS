@@ -131,23 +131,87 @@ def complete_session(session_id):
 
 
 def get_student_sessions(student_id):
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT SessionID,
+                   SessionDate,
+                   StartTime,
+                   EndTime,
+                   Status,
+                   MentorName
+            FROM StudentSessions
+            WHERE StudentID = %s
+            ORDER BY SessionDate, StartTime
+        """, [student_id])
+
+        columns = [col[0] for col in cursor.description]
+
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]
+
+
+def add_availability(data):
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            EXEC dbo.usp_InsertAvailability
+                @MentorID=%s,
+                @AvailableDate=%s,
+                @StartTime=%s,
+                @EndTime=%s
+        """, [
+            data["MentorID"],
+            data["AvailableDate"],
+            data["StartTime"],
+            data["EndTime"]
+        ])
+
+        row = cursor.fetchone()
+
+        return {
+            "Message": row[0]
+        }
+
+def delete_availability(availability_id):
 
     with connection.cursor() as cursor:
 
         cursor.execute("""
-            SELECT *
-            FROM viewMentorSessions
-            WHERE StudentID = %s
-        """, [student_id])
+            EXEC usp_DeleteAvailability
+                @AvailabilityID=%s
+        """, [availability_id])
 
+        row = cursor.fetchone()
 
-        columns = [
-            column[0]
-            for column in cursor.description
-        ]
+        return {
+            "Message": row[0]
+        }
 
+def get_availability(mentor_id):
 
-        return [
-            dict(zip(columns, row))
+    with connection.cursor() as cursor:
+
+        cursor.execute("""
+
+            SELECT
+                AvailabilityID,
+                AvailableDate,
+                StartTime,
+                EndTime
+
+            FROM Availability
+
+            WHERE MentorID=%s
+
+            ORDER BY AvailableDate, StartTime
+
+        """,[mentor_id])
+
+        columns=[c[0] for c in cursor.description]
+
+        return[
+            dict(zip(columns,row))
             for row in cursor.fetchall()
         ]

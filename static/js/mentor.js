@@ -6,6 +6,12 @@ if (!user) {
 
 }
 
+document.getElementById("welcome").textContent =
+    `Welcome back, ${user.FirstName} ${user.LastName}!`;
+
+document.getElementById("role").textContent =
+    `Role: ${user.Role}`;
+
 async function loadPendingRequests() {
 
     const requests =
@@ -192,6 +198,96 @@ async function completeSession(sessionID){
 
 }
 
+async function addAvailability(){
+
+    const availability = {
+
+        MentorID: user.MentorID,
+
+        AvailableDate:
+            document.getElementById("available-date").value,
+
+        StartTime:
+            document.getElementById("start-time").value,
+
+        EndTime:
+            document.getElementById("end-time").value
+
+    };
+
+    const result =
+        await addAvailabilityRequest(availability);
+
+    alert(result.Message);
+
+    loadAvailability();
+
+}
+
+async function loadAvailability() {
+
+    console.log("Loading availability...");
+
+    const availability =
+        await getAvailability(user.MentorID);
+
+    const container =
+        document.getElementById("mentor-availability");
+
+    container.innerHTML = "";
+
+    if (availability.length === 0) {
+
+        container.innerHTML =
+            "<p>No availability added yet.</p>";
+
+        return;
+
+    }
+
+    availability.forEach(slot => {
+
+        container.innerHTML += `
+
+        <div class="session-card">
+
+            <p>
+                <strong>Date:</strong>
+                ${slot.AvailableDate}
+            </p>
+
+            <p>
+                <strong>Time:</strong>
+                ${slot.StartTime}
+                -
+                ${slot.EndTime}
+            </p>
+
+            <button
+                onclick="deleteAvailability(${slot.AvailabilityID})">
+
+                Delete
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+async function deleteAvailability(availabilityID){
+
+    const result = await deleteAvailabilityRequest(availabilityID);
+
+    alert(result.Message);
+
+    loadAvailability();
+
+}
+
 function logout() {
 
     sessionStorage.clear();
@@ -205,5 +301,7 @@ window.onload = function(){
     loadPendingRequests();
 
     loadMentorSessions();
+
+    loadAvailability();
 
 };

@@ -1,3 +1,5 @@
+console.log("student.js loaded");
+
 const user = JSON.parse(sessionStorage.getItem("user"));
 
 if (!user) {
@@ -219,7 +221,13 @@ async function loadStudentSessions() {
 
 }
 
-window.onload = function () {
+window.onload = function(){
+
+    document.getElementById("welcome").textContent =
+        `Welcome back, ${user.FirstName} ${user.LastName}!`;
+
+    document.getElementById("role").textContent =
+        `Role: ${user.Role}`;
 
     loadStudentSessions();
 
