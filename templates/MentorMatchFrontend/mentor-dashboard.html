@@ -3,12 +3,21 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Mentor Dashboard</title>
 
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'css/dashboard.css' %}">
+
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+
 </head>
 
 <body>
@@ -37,25 +46,79 @@
     <!-- Dashboard Statistics -->
     <div class="dashboard-grid">
 
-        <div class="card">
+        <div class="card stat-card">
 
-            <h3>Total Sessions</h3>
+            <div class="section-header">
+
+                <div class="section-icon">
+                    <span class="material-symbols-outlined">
+                        analytics
+                    </span>
+                </div>
+
+                <div>
+
+                    <h3>Total Sessions</h3>
+
+                    <p>
+                        Overall mentoring sessions.
+                    </p>
+
+                </div>
+
+            </div>
 
             <h2 id="total-sessions">0</h2>
 
         </div>
 
-        <div class="card">
+        <div class="card stat-card">
 
-            <h3>Scheduled Sessions</h3>
+            <div class="section-header">
+
+                <div class="section-icon">
+                    <span class="material-symbols-outlined">
+                        event
+                    </span>
+                </div>
+
+                <div>
+
+                    <h3>Scheduled Sessions</h3>
+
+                    <p>
+                        Upcoming confirmed sessions.
+                    </p>
+
+                </div>
+
+            </div>
 
             <h2 id="scheduled-sessions">0</h2>
 
         </div>
 
-        <div class="card">
+        <div class="card stat-card">
 
-            <h3>Completed Sessions</h3>
+            <div class="section-header">
+
+                <div class="section-icon">
+                    <span class="material-symbols-outlined">
+                        task_alt
+                    </span>
+                </div>
+
+                <div>
+
+                    <h3>Completed Sessions</h3>
+
+                    <p>
+                        Successfully completed mentoring sessions.
+                    </p>
+
+                </div>
+
+            </div>
 
             <h2 id="completed-sessions">0</h2>
 
@@ -63,58 +126,103 @@
 
     </div>
 
-    <br>
-
     <!-- Pending Requests -->
+
     <div class="card">
 
-        <h2>Pending Booking Requests</h2>
+        <div class="section-header">
 
-        <p>Approve student booking requests.</p>
+            <div class="section-icon">
 
-        <div id="pending-requests">
+                <span class="material-symbols-outlined">
+                    pending_actions
+                </span>
+
+            </div>
+
+            <div>
+
+                <h2>Pending Booking Requests</h2>
+
+                <p>
+                    Review and approve student mentoring requests.
+                </p>
+
+            </div>
 
         </div>
 
-    </div>
+        <div id="pending-requests"></div>
 
-    <br>
+    </div>
 
     <!-- Upcoming Sessions -->
+
     <div class="card">
 
-        <h2>Upcoming Sessions</h2>
+        <div class="section-header">
 
-        <div id="mentor-sessions">
+            <div class="section-icon">
+
+                <span class="material-symbols-outlined">
+                    calendar_month
+                </span>
+
+            </div>
+
+            <div>
+
+                <h2>Upcoming Sessions</h2>
+
+                <p>
+                    View your scheduled mentoring sessions.
+                </p>
+
+            </div>
 
         </div>
 
+        <div id="mentor-sessions"></div>
+
     </div>
 
-    <br>
-
     <!-- Add Availability -->
+
     <div class="card">
 
-        <h2>Add Availability</h2>
+        <div class="section-header">
+
+            <div class="section-icon">
+
+                <span class="material-symbols-outlined">
+                    schedule
+                </span>
+
+            </div>
+
+            <div>
+
+                <h2>Add Availability</h2>
+
+                <p>
+                    Set the days and times students can book you.
+                </p>
+
+            </div>
+
+        </div>
 
         <input
-            type="date"
-            id="available-date">
-
-        <br><br>
+                type="date"
+                id="available-date">
 
         <input
-            type="time"
-            id="start-time">
-
-        <br><br>
+                type="time"
+                id="start-time">
 
         <input
-            type="time"
-            id="end-time">
-
-        <br><br>
+                type="time"
+                id="end-time">
 
         <button onclick="addAvailability()">
 
@@ -124,22 +232,40 @@
 
     </div>
 
-    <br>
-
     <!-- My Availability -->
+
     <div class="card">
 
-        <h2>My Availability</h2>
+        <div class="section-header">
 
-        <div id="mentor-availability">
+            <div class="section-icon">
+
+                <span class="material-symbols-outlined">
+                    event_available
+                </span>
+
+            </div>
+
+            <div>
+
+                <h2>My Availability</h2>
+
+                <p>
+                    Manage your available mentoring schedule.
+                </p>
+
+            </div>
 
         </div>
+
+        <div id="mentor-availability"></div>
 
     </div>
 
 </div>
 
 <script src="{% static 'js/api.js' %}"></script>
+
 <script src="{% static 'js/mentor.js' %}"></script>
 
 </body>

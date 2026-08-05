@@ -24,6 +24,17 @@ async function loadPendingRequests() {
 
     container.innerHTML = "";
 
+    if (requests.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
+
+        return;
+    }
+
     requests.forEach(request => {
 
         container.innerHTML += `
@@ -104,6 +115,17 @@ async function loadMentorSessions(){
 
 
     container.innerHTML = "";
+
+     if (sessions.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
+
+        return;
+    }
 
 
     sessions.forEach(session => {
@@ -236,13 +258,15 @@ async function loadAvailability() {
 
     container.innerHTML = "";
 
-    if (availability.length === 0) {
+     if (avaiability.length === 0) {
 
-        container.innerHTML =
-            "<p>No availability added yet.</p>";
+        container.innerHTML = `
+            <div class="empty-state">
+                No pending booking requests.
+               </div>
+        `;
 
         return;
-
     }
 
     availability.forEach(slot => {
